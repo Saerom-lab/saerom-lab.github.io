@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ | 感性デザイン研究室</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="sub-page">
+
+    <header class="header">
+        <div class="logo"><a href="index.html">Saerom Lab.</a></div>
+        <nav class="nav">
+            <a href="about.html">研究室について</a>
+            <a href="works.html">研究業績</a>
+            <a href="members.html">メンバー</a>
+            <a href="contact.html" class="text-mint">問い合わせ</a>
+        </nav>
+    </header>
+
+    <main class="container section">
+        
+        <div class="access-section fade-in">
+            <h1 class="page-title">アクセス<span>Access</span></h1>
+            <div class="address-text">
+                <p>〒760-0016　香川県 高松市 幸町</p>
+                <p>香川大学 幸町キャンパス 北5号館3階</p>
+            </div>
+            <div class="access-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3294.571987553205!2d134.0416997762744!3d34.33649567305166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3553eb86f7791837%3A0x6b6d51066d48256b!2z6aaZ5bed5aSn5a2mIOW5uOeSluOCreODo-ODs-ODkeOCuQ!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+        <div class="contact-section section fade-in">
+            <h1 class="page-title">お問い合わせ<span>Contact</span></h1>
+            
+            <form action="#" method="post" class="contact-form">
+                <div class="form-group">
+                    <label class="form-label">氏名</label>
+                    <input type="text" class="form-input" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">所属（大学名・企業名）</label>
+                    <input type="text" class="form-input" name="affiliation">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">メールアドレス</label>
+                    <input type="email" class="form-input" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">お問い合わせ内容</label>
+                    <textarea class="form-textarea" name="message" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">送信</button>
+            </form>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">サイトマップ</a>
+                <a href="#">利用規約</a>
+                <a href="#">リンク</a>
+                <a href="contact.html">アクセス</a>
+            </div>
+            <p class="copyright">Copyright © 2024 Lee Saerom, Kagawa University.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
