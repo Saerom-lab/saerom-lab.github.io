@@ -2,6 +2,17 @@
 let fadeInObserver;
 
 document.addEventListener('DOMContentLoaded', () => {
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    const navLinks = document.querySelectorAll('.nav a');
+    
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('text-mint');
+        } else {
+            link.classList.remove('text-mint');
+        }
+    });
+    
     // オブザーバーの初期設定
     const observerOptions = {
         root: null,
