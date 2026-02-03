@@ -63,8 +63,9 @@ ul { list-style: none; }
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 100;
     border-bottom: 1px solid #eee;
+    height: 80px;
 }
 
 .logo {
@@ -73,8 +74,18 @@ ul { list-style: none; }
     color: var(--color-mint);
 }
 
+/* ナビゲーションの文字色（text-mint）が効くように調整 */
+.nav a.text-mint {
+    color: var(--color-mint);
+    padding-left: 0;
+    border-bottom: 2px solid var(--color-mint); /* 左線より下線の方がヘッダーには一般的 */
+    padding-bottom: 4px;
+    border-left: none; /* もし左線が不要なら */
+    display: inline-block;
+}
+
 .nav a {
-    margin-left: 20px;
+    margin-left: 25px;
     font-size: 0.9rem;
     font-weight: 500;
 }
@@ -304,7 +315,7 @@ ul { list-style: none; }
     }
 
     .header {
-        padding: 15px 20px;
+        padding: 0 20px;
     }
     
     .nav { display: none; /* 簡易的に非表示（ハンバーガーメニュー等は省略） */ }
@@ -325,12 +336,6 @@ body.sub-page main {
     flex: 1; /* 余ったスペースをすべて使い切る（＝フッターが下に押し出される） */
     width: 100%;
     text-align: left;
-}
-
-body.sub-page .header {
-    background-color: rgba(255, 255, 255, 0.95);
-    border-bottom: 1px solid #eee;
-    position: fixed;
 }
 
 /* Page Title */
