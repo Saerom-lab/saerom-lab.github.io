@@ -24,10 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- CSV読み込み処理 ---
     if (document.getElementById('member-app')) {
-        loadCSV('members.csv', renderMembers);
+        loadCSV('./csv/members.csv', renderMembers);
     }
     if (document.getElementById('works-app')) {
-        loadCSV('works.csv', renderWorks);
+        loadCSV('./csv/works.csv', renderWorks);
     }
 });
 
