@@ -2,16 +2,7 @@
 let fadeInObserver;
 
 document.addEventListener('DOMContentLoaded', () => {
-    const currentPath = window.location.pathname.split("/").pop() || "index.html";
-    const navLinks = document.querySelectorAll('.nav a');
-    
-    navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPath) {
-            link.classList.add('text-mint');
-        } else {
-            link.classList.remove('text-mint');
-        }
-    });
+    loadHeader();
     
     // オブザーバーの初期設定
     const observerOptions = {
@@ -41,6 +32,47 @@ document.addEventListener('DOMContentLoaded', () => {
         loadCSV('./csv/works.csv', renderWorks);
     }
 });
+
+// ヘッダーを読み込む関数
+async function loadHeader() {
+    const placeholder = document.getElementById('header-placeholder');
+    if (!placeholder) return;
+
+    try {
+        const response = await fetch('header.html');
+        const data = await response.text();
+        placeholder.innerHTML = data;
+
+        // --- ヘッダー読み込み完了後に実行すべき処理 ---
+        initNavigation(); // 現在地のハイライト
+        initHamburger();  // ハンバーガーメニューの開閉
+    } catch (error) {
+        console.error('ヘッダーの読み込みに失敗しました:', error);
+    }
+}
+
+// ナビゲーションのハイライト処理
+function initNavigation() {
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    const navLinks = document.querySelectorAll('.nav a');
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('text-mint');
+        }
+    });
+}
+
+// ハンバーガーメニューの処理
+function initHamburger() {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    if (!hamburger || !navMenu) return;
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+}
 
 // CSV読み込みの共通関数
 function loadCSV(url, callback) {
