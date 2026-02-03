@@ -38,6 +38,7 @@ ul { list-style: none; }
     max-width: 1000px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
 }
 
 .flex-row {
@@ -314,7 +315,18 @@ ul { list-style: none; }
 /* Sub-page Header Adjustment */
 body.sub-page {
     padding-top: 80px; /* Header height space */
+    display: flex;          /* Flexboxレイアウトを有効化 */
+    flex-direction: column; /* 子要素（header, main, footer）を縦に並べる */
+    min-height: 100vh;      /* 画面の高さ100%分を最低限確保する */
+    align-items: stretch; 
+    margin: 0;
 }
+body.sub-page main {
+    flex: 1; /* 余ったスペースをすべて使い切る（＝フッターが下に押し出される） */
+    width: 100%;
+    text-align: left;
+}
+
 body.sub-page .header {
     background-color: rgba(255, 255, 255, 0.95);
     border-bottom: 1px solid #eee;
