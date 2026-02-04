@@ -37,8 +37,10 @@ ul { list-style: none; }
 .container {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .flex-row {
@@ -49,7 +51,8 @@ ul { list-style: none; }
 }
 
 .section {
-    padding: 80px 0;
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 
 /* Header */
@@ -291,6 +294,16 @@ ul { list-style: none; }
 
 /* Responsive */
 @media (max-width: 768px) {
+    .flex-row > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-right: 0;
+    }
+
+    .abstract-shape, .circle-bg, .photo-cluster {
+        margin: 30px auto 0;
+    }
+
     .flex-row, .flex-row.reverse {
         flex-direction: column;
         text-align: left;
@@ -300,46 +313,53 @@ ul { list-style: none; }
         flex-direction: column-reverse; /* スマホでは画像が上に来るようにする場合 */
     }
 
-    .abstract-shape, .circle-bg, .photo-cluster {
+    .logo-big, .abstract-shape, .circle-bg, .photo-cluster {
         width: 300px;
         height: 300px;
         margin: 0 auto;
     }
     
     .photo-pair {
+        display: flex !important;
+        flex-direction: row;
         justify-content: center;
+        gap: 15px;
+        width: 100%;
+        margin: 20px auto;
     }
     
     .photo-pair .p4, .photo-pair .p5 {
-        width: 140px; height: 140px;
+        width: 140px;
+        height: 140px;
+        flex-shrink: 0;
+        background-size: cover;
+        background-position: center;
     }
 
-.hamburger {
-        display: block; /* スマホのみ表示 */
-        cursor: pointer;
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* 3本の線を均等に配置 */
         width: 30px;
-        height: 25px;
-        position: relative;
+        height: 20px;
         z-index: 110;
+        box-sizing: border-box;
     }
 
     .hamburger span {
         display: block;
         width: 100%;
-        height: 2px;
+        height: 3px;
         background-color: var(--color-text);
-        position: absolute;
-        transition: 0.3s;
+        transition: all 0.3s ease-in-out;
+        border-radius: 2px;
+        transform: translateZ(0);
     }
 
-    .hamburger span:nth-child(1) { top: 0; }
-    .hamburger span:nth-child(2) { top: 11px; }
-    .hamburger span:nth-child(3) { bottom: 0; }
-
     /* ボタンが開いている時のアニメーション (X印) */
-    .hamburger.active span:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+    .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { transform: translateY(-12px) rotate(-45deg); }
+    .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
     /* 2. ナビゲーションを全画面メニュー化 */
     .nav {
@@ -380,7 +400,8 @@ ul { list-style: none; }
     }
 
     .section {
-        padding: 40px 0; /* 上下の余白を狭く */
+        padding-top: 40px;
+        padding-bottom: 40px; 
     }
 
     .header {
