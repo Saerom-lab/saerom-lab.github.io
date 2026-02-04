@@ -107,7 +107,8 @@ function renderWorks(data) {
         '受賞': 'Award'
     };
 
-    const years = [...new Set(data.map(item => item.Year))];
+    //const years = [...new Set(data.map(item => item.Year))];
+    const years = [...new Set(data.map(item => item.Year))].sort((a, b) => b - a);
 
     years.forEach((year, index) => {
         const details = document.createElement('details');
