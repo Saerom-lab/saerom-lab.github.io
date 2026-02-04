@@ -2,7 +2,12 @@
 let fadeInObserver;
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadHeader();
+    loadComponent('header-placeholder', 'header.html', () => {
+        initNavigation();
+        initHamburger();
+    });
+    
+    loadComponent('footer-placeholder', 'footer.html');
     
     // オブザーバーの初期設定
     const observerOptions = {
@@ -33,21 +38,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// ヘッダーを読み込む関数
-async function loadHeader() {
-    const placeholder = document.getElementById('header-placeholder');
+async function loadComponent(id, file, callback) {
+    const placeholder = document.getElementById(id);
     if (!placeholder) return;
 
     try {
-        const response = await fetch('header.html');
+        const response = await fetch(file);
+        if (!response.ok) throw new Error(`Failed to load ${file}`);
         const data = await response.text();
         placeholder.innerHTML = data;
-
-        // --- ヘッダー読み込み完了後に実行すべき処理 ---
-        initNavigation(); // 現在地のハイライト
-        initHamburger();  // ハンバーガーメニューの開閉
+        
+        if (callback) callback();
     } catch (error) {
-        console.error('ヘッダーの読み込みに失敗しました:', error);
+        console.error('コンポーネントの読み込みに失敗しました:', error);
     }
 }
 
@@ -82,7 +85,12 @@ function loadCSV(url, callback) {
         header: true,
         skipEmptyLines: true,
         complete: function(results) {
-            callback(results.data);
+            if (results && results.data) {
+                callback(results.data);
+            }
+        },
+        error: function(err) {
+            console.error("CSVの読み込みエラー:", url, err);
         }
     });
 }
