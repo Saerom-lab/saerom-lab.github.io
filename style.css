@@ -200,10 +200,17 @@ ul { list-style: none; }
     align-items: center;
     justify-content: center;
     font-size: 2rem;
+    overflow: hidden;
 }
 
 .mint-bg { background-color: var(--color-mint-light); color: var(--color-mint); }
 .pink-bg { background-color: var(--color-pink-light); color: var(--color-pink); }
+
+.main-svg-icon {
+    width: 65%; 
+    height: auto;
+    display: block;
+}
 
 /* Photo Placeholders */
 .photo-circle {
