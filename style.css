@@ -231,17 +231,20 @@ ul { list-style: none; }
 .photo-cluster .p1 {
     width: 200px; height: 200px;
     position: absolute; top: 0; left: 20px;
-    background-image: url('https://placehold.co/200x200/eee/999?text=Lab+1');
+    background-image: url(img/lab01.JPG);
+    background-size: cover;
 }
 .photo-cluster .p2 {
     width: 150px; height: 150px;
     position: absolute; bottom: 50px; right: 0;
-    background-image: url('https://placehold.co/150x150/eee/999?text=Lab+2');
+    background-image: url(img/lab02.JPG);
+    background-size: cover;
 }
 .photo-cluster .p3 {
     width: 100px; height: 100px;
     position: absolute; bottom: 0; left: 50px;
-    background-image: url('https://placehold.co/100x100/eee/999?text=Lab+3');
+    background-image: url(img/lab03.jpg);
+    background-size: cover;
 }
 
 /* Background Sections */
@@ -261,7 +264,26 @@ ul { list-style: none; }
 
 .photo-pair .p4, .photo-pair .p5, .photo-pair .p6, .photo-pair .p7 {
     width: 180px; height: 180px;
-    background-image: url('https://placehold.co/180x180/fff/ccc?text=Photo');
+}
+
+.photo-pair .p4 {
+    background-image: url('img/photo01.jpg');
+    background-size: cover;
+}
+
+.photo-pair .p5 {
+    background-image: url('img/photo02.jpg');
+    background-size: cover;
+}
+
+.photo-pair .p6 {
+    background-image: url('img/photo03.jpg');
+    background-size: cover;
+}
+
+.photo-pair .p7 {
+    background-image: url('img/photo04.jpg');
+    background-size: cover;
 }
 
 /* Footer */
@@ -301,7 +323,7 @@ ul { list-style: none; }
 
 /* Responsive */
 @media (max-width: 768px) {
-    .flex-row > div {
+    .container main .flex-row > div {
         width: 100% !important;
         max-width: 100% !important;
         padding-right: 0;
@@ -419,6 +441,27 @@ ul { list-style: none; }
     body.sub-page {
         padding-top: 70px;
     }
+
+    /*プロフィールセクションを縦並びにする*/
+    .profile-section.flex-row {
+        gap: 20px;
+    }
+
+    /* 2. 画像コンテナの幅を100%にする */
+    .profile-section .image-content {
+        width: 100% !important;
+        display: flex;
+        justify-content: center; /* 写真を中央に寄せる */
+    }
+
+    /*消えていた写真に「高さ」と「幅」を明示的に与える */
+    .profile-photo {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        background-size: cover;
+        background-position: center;
+    }
 }
 
 /* --- Additions for Sub-pages --- */
@@ -492,16 +535,10 @@ body.sub-page main {
     background-size: cover;
     margin: 0 auto;
 }
-.project-gallery {
+
+#project-gallery-app {
     display: flex;
-    gap: 15px;
-    margin-top: 30px;
-    flex-wrap: wrap;
-}
-.gallery-item {
-    width: calc(20% - 12px);
-    aspect-ratio: 1;
-    background-color: #ddd;
+    margin-top: 40px;
 }
 
 /* --- Achievements Page (works.html) --- */

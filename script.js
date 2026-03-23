@@ -36,6 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('works-app')) {
         loadCSV('./csv/works.csv', renderWorks);
     }
+    // --- プロジェクトギャラリーの読み込み処理 --- 
+    if (document.getElementById('project-gallery-app')) {
+        loadCSV('./csv/projects.csv', (data) => renderGallery(data, 'project-gallery-app'));
+    }
+    // --- 研究室ギャラリーの読み込み処理 --- 
+    if (document.getElementById('laboratory-gallery-app')) {
+        loadCSV('./csv/laboratory.csv', (data) => renderGallery(data, 'laboratory-gallery-app'));
+    }
 });
 
 async function loadComponent(id, file, callback) {
@@ -203,4 +211,49 @@ function renderMembers(data) {
         // ✅ 追加した直後の要素を監視対象に入れる
         fadeInObserver.observe(section);
     });
+}
+
+// ギャラリーのレンダリング処理
+function renderGallery(data, galleryId) {
+    const container = document.getElementById(galleryId);
+    if (!container) return;
+
+    const list = container.querySelector('.splide__list');
+    if (!list) return;
+
+    list.innerHTML = '';
+
+    data.forEach(item => {
+        const li = document.createElement('li');
+        li.className = 'splide__slide'; // Splide専用クラス
+        li.innerHTML = `
+            <div class="gallery-img-wrapper" style="width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 8px; background-color: #eee;">
+                <img src="${item.Image}"
+                     alt="${item.Alt || ''}"
+                     style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;"
+                >
+            </div>
+        `;
+        list.appendChild(li);
+    });
+
+    // Splideの初期化
+    new Splide(`#${galleryId}`, {
+        type   : 'loop',      // 無限ループ
+        drag   : 'free',      // 自由なドラッグ
+        focus  : 'center',    // 中央フォーカス
+        perPage: 4,           // 一度に表示する枚数（PC）
+        gap    : 20,          // 画像間の隙間
+        arrows : false,       // 矢印非表示
+        pagination: false,    // ドット非表示
+        autoScroll: {
+            speed: 0.5,         // スクロール速度
+        },
+        breakpoints: {
+            768: {
+                perPage: 2,   // スマホでは2枚表示
+                gap: 10,
+            }
+        }
+    }).mount( window.splide.Extensions ); // Extensionを忘れずにマウント
 }
